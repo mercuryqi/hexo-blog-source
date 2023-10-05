@@ -74,8 +74,8 @@ jobs:
         run: |
           cd ./public && git init && git add . && git branch -m main 
           git config --global init.defaultBranch main
-          git config user.name "mercuryqi"                   
-          git config user.email "mercuryqi@163.com"    
+          git config --global user.name "mercuryqi"                   
+          git config --global user.email "mercuryqi@163.com"    
           echo "Hi, that is icunan's blog" >> README.md 
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
