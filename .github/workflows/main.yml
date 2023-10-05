@@ -1,4 +1,4 @@
-name: Deploy HexoBlog # 自动化CI/CD
+name: Deploy CYFHexoBlog # 自动化CI/CD
 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -55,19 +55,22 @@ jobs:
       # 生成静态文件
       - name: Generate files
         # 编译 markdown 文件
+        # 添加谷歌发现html & sitemap
         run: |
           hexo clean 
           hexo douban -bgm
           hexo generate
+
 
       # 2、部署到 GitHub Pages
       - name: Deploy hexo blog, upload GitHub repository
         env: 
           # Github 仓库
           GITHUB_REPO: github.com/mercuryqi/mercuryqi.github.io
+          # Giee 仓库
         # 将编译后的博客文件推送到指定仓库
         run: |
-          cd ./public && git init && git add . && git branch -M main 
+          cd ./public && git init && git add . && git branch -m main 
           git config --global init.defaultBranch main
           git config user.name "mercuryqi"                   
           git config user.email "mercuryqi@163.com"    
