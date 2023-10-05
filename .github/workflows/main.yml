@@ -43,6 +43,7 @@ jobs:
         run: |
           npm install hexo-cli -g
           npm install
+          npm i hexo-deployer-git
           npm i hexo@4.1.1
           npm install hexo-abbrlink --save
           npm install hexo-douban --update --save
