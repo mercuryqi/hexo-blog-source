@@ -79,5 +79,5 @@ jobs:
           echo "Hi, that is icunan's blog" >> README.md 
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-          git push -u --force --quiet "https://@$GITHUB_REPO" main:main
+          git push -u --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" main:main
 
