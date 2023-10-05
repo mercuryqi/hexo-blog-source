@@ -6,8 +6,8 @@ on:
     branches:  main  # 哪些分支需要触发
   pull_request:  
     branches:  main
-permissions:
-  contents: write
+
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -79,5 +79,5 @@ jobs:
           echo "Hi, that is icunan's blog" >> README.md 
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-          git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" main:main
+          git push -u --force --quiet "https://@$GITHUB_REPO" main:main
 
