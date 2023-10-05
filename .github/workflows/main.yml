@@ -6,7 +6,8 @@ on:
     branches:  main  # 哪些分支需要触发
   pull_request:  
     branches:  main
-
+permissions:
+  contents: write
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
