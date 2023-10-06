@@ -67,13 +67,13 @@ jobs:
           # Github 仓库
           GITHUB_REPO: github.com/mercuryqi/mercuryqi.github.io
           # Giee 仓库
-        # 将编译后的博客文件推送到指定仓库
+        # 将编译后的博客文件推送到指定仓库&& echo "www.flying2top.top" >> CNAME
         run: |
           cd ./public && git init && git add . && git branch -m main 
           git config --global init.defaultBranch main
           git config user.name "mercuryqi"                   
           git config user.email "mercuryqi@163.com"    
-          echo "Hi, that is cyf's blog" >> README.md  && echo "www.flying2top.top" >> CNAME
+          echo "Hi, that is cyf's blog" >> README.md  
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
           git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" main:main
