@@ -60,8 +60,6 @@ jobs:
           hexo clean 
           hexo douban -bgm
           hexo generate
-          cp source/googleed93f053bbb1c2b8.html public/
-          cp source/robots.txt public/
 
       # 2、部署到 GitHub Pages
       - name: Deploy hexo blog, upload GitHub repository
@@ -75,7 +73,7 @@ jobs:
           git config --global init.defaultBranch main
           git config user.name "mercuryqi"                   
           git config user.email "mercuryqi@163.com"    
-          echo "Hi, that is cyf's blog" >> README.md  && echo "www.awayanan.wang" >> CNAME
+          echo "Hi, that is cyf's blog" >> README.md  && echo "www.flying2top.top" >> CNAME
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
           git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" main:main
