@@ -1,34 +1,81 @@
-name: Build and Deploy Hexo
+name: Deploy HexoBlog # 自动化CI/CD
+
 on:
-  push:
-    branches:
-      - main
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push: # push的时候触发
+    branches:  main  # 哪些分支需要触发
+  pull_request:  
+    branches:  main
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  # This workflow contains a single job called "build"
+  Blog_CI-CD:
+    runs-on: ubuntu-latest  # 服务器环境
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    
     steps:
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
+      # 检查代码
+      - name: Checkout
+        uses: actions/checkout@v2  #软件市场的名称
+        with: # 参数
+          submodules: true
+          persist-credentials: false
+          
+      - name: Setup Node.js
+       # 设置 node.js 环境
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          
+      - name: Cache node modules
+      # 设置包缓存目录，避免每次下载
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          
+      # 配置Hexo环境 
+      - name: Setup Hexo
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.ACCESS_TOKEN }}
+        # 下载hexo-cli脚手架以及相关安装包  
+        run: |
+          npm install hexo-cli -g
+          npm install
+          npm i hexo@4.1.1
+          npm install hexo-abbrlink --save
+          npm install hexo-douban --update --save
+          npm install hexo-generator-sitemap --save
+          npm install hexo-generator-baidu-sitemap --save
+          npm i hexo-generator-json-content --save
+          npm i -S hexo-prism-plugin
+           
       
-    - name: Use Node.js 12
-      uses: actions/setup-node@v2-beta
-      with:
-        node-version: '12'
+      # 生成静态文件
+      - name: Generate files
+        # 编译 markdown 文件
+        # 添加谷歌发现html & sitemap
+        run: |
+          hexo clean 
+          hexo douban -bgm
+          hexo generate
+          cp source/googleed93f053bbb1c2b8.html public/
+          cp source/robots.txt public/
 
-    - name: Install Pandoc
-      run: |
-        sudo apt-get install pandoc
-        
-    - name: Install and Build 🔧 
-      run: |
-        npm install -g hexo-cli
-        npm install
-        hexo clean
-        hexo generate
-
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: public
+      # 2、部署到 GitHub Pages
+      - name: Deploy hexo blog, upload GitHub repository
+        env: 
+          # Github 仓库
+          GITHUB_REPO: github.com/mercuryqi/mercuryqi.github.io
+          # Giee 仓库
+        # 将编译后的博客文件推送到指定仓库
+        run: |
+          cd ./public && git init && git add . && git branch -m main 
+          git config --global init.defaultBranch main
+          git config user.name "mercuryqi"                   
+          git config user.email "mercuryqi@163.com"    
+          echo "Hi, that is cyf's blog" >> README.md  && echo "www.awayanan.wang" >> CNAME
+          git add .
+          git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
+          git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" main:main
