@@ -63,14 +63,15 @@ jobs:
           # Github 仓库
           GITHUB_REPO: github.com/mercuryqi/mercuryqi.github.io
           # Giee 仓库
-        # 将编译后的博客文件推送到指定仓库
+        # 将编译后的博客文件推送到指定仓库git push -u --force --quiet url.https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO main:main
         run: |
           cd ./public && git init && git add . && git branch -m main 
           git config --global init.defaultBranch main
           git config --global user.name "mercuryqi"                   
           git config --global user.email "mercuryqi@163.com"    
+          git config --global url.https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO
           echo "Hi, that is icunan's blog" >> README.md 
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-          git push -u --force --quiet "https://@$GITHUB_REPO" main:main
+          git push -u origin main
 
