@@ -65,7 +65,7 @@ jobs:
           # Giee 仓库
         # 将编译后的博客文件推送到指定仓库git push -u --force --quiet url.https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO main:main
         run: |
-          cd ./public && git init && git add . && git branch -m main 
+          cd ./public && git init && git add . 
           git config --global init.defaultBranch main
           git config --global user.name "mercuryqi"                   
           git config --global user.email "mercuryqi@163.com"    
