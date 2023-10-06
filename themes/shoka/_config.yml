@@ -1,5 +1,5 @@
 # Alternate site name
-alternate: Mercuryqi
+alternate: Yume Shoka
 
 open_graph:
   #twitter_id:
@@ -90,9 +90,9 @@ iconfont: "1832207_igi8uaupcus"
 
 menu:
   home: / || home
-  about: /about/ || user
-  posts:
-     default: / || feather
+  # about: /about/ || user
+  # posts:
+  #   default: / || feather
   #   archives: /archives/ || list-alt
   #   categories: /categories/ || th
   #   tags: /tags/ || tags
