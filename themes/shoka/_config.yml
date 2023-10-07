@@ -90,14 +90,14 @@ iconfont: "1832207_igi8uaupcus"
 
 menu:
   home: / || home
-  # about: /about/ || user
-  # posts:
-  #   default: / || feather
-  #   archives: /archives/ || list-alt
-  #   categories: /categories/ || th
-  #   tags: /tags/ || tags
-  # friends: /friends/ || heart
-  # links: /links/ || magic
+  about: /about/ || user
+  posts:
+    default: / || feather
+    archives: /archives/ || list-alt
+    categories: /categories/ || th
+    tags: /tags/ || tags
+  friends: /friends/ || heart
+  links: /links/ || magic
 
 # Social Links
 # Usage: `Key: permalink || icon || color`
@@ -135,7 +135,7 @@ widgets:
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  since: 2010
+  since: 2023
   icon:
     name: sakura rotate
     # Change the color of icon, using Hex Code.
