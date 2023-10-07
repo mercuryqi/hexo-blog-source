@@ -67,9 +67,9 @@ jobs:
           # Github 仓库
           GITHUB_REPO: github.com/mercuryqi/mercuryqi.github.io
           # Giee 仓库
-        # 将编译后的博客文件推送到指定仓库&& echo "www.flying2top.top" >> CNAME
+        # 将编译后的博客文件推送到指定仓库
         run: |
-          cd ./public && git init && git add . && git branch -m main 
+          cd ./public && git init && git add . && git branch -m main  && echo "www.flying2top.top" >> CNAME
           git config --global init.defaultBranch main
           git config user.name "mercuryqi"                   
           git config user.email "mercuryqi@163.com"    
