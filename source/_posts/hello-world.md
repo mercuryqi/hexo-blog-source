@@ -9,6 +9,12 @@ Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [docume
 
 ## Quick Start
 
+### hello cyf
+
+123
+
+![](https://www.awayanan.wang/img/CUI.jpg)
+
 ### Create a new post
 
 ``` bash
