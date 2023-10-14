@@ -4,5 +4,6 @@ categories:
   - test
 tags: 
   - test
+  - 测试
 ---
 这是一个测试文件
