@@ -7,7 +7,12 @@ tags:
 ---
 要求：插入本地图片，数学公式，表格，网页链接
 
-$\displaystyle \int^{\infty}_{0}{xdx}$
+$$
+\begin{aligned}
+   \int_a^b x^2  \mathrm{d} x
+\end{aligned}
+$$
+
 
 ![](images/temp.png)
 
